@@ -23,9 +23,11 @@ function freshBlogList(offset) {
 
                 $("#blogList").append("<div class=\"panel panel-default\">\n" +
                     "                <div class=\"panel-body\">\n" +
-                    "                    <p class=\"text-primary\"><h4>" +
+                    "                    <p class=\"text-primary\"><h4><a href='" +
+                    "/detail.html?id=" + item.id +
+                    "'>" +
                     item.title +
-                    "</h4></p>\n" +
+                    "</a></h4></p>\n" +
                     "\n" +
                     "                    <p class=\"text-muted\">" +
                     item.description +
