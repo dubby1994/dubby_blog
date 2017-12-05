@@ -24,4 +24,7 @@ public class BlogService {
         return blogMapper.findById(id);
     }
 
+    public int count() {
+        return blogMapper.count();
+    }
 }

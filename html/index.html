@@ -40,9 +40,10 @@
 
         <div class="collapse navbar-collapse" id="dubby_navbar">
             <ul class="nav navbar-nav">
-                <li><a href="">Java</a></li>
-                <li><a href="">MySQL</a></li>
-                <li><a href="">Redis</a></li>
+                <li><a href="javascript:void(0)">时间是一切财富中最宝贵的财富</a></li>
+                <!--<li><a href="">Java</a></li>-->
+                <!--<li><a href="">MySQL</a></li>-->
+                <!--<li><a href="">Redis</a></li>-->
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -67,65 +68,31 @@
 <div class="container-fluid">
     <div class="row">
         <!-- 左侧-->
-        <div class="col-md-8" id="blogList">
+        <div class="col-md-8 col-sm-8">
 
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <p class="text-primary">Basic panel example</p>
+            <div class="col-md-12" id="blogList">
+                <!--<div class="panel panel-default">-->
+                    <!--<div class="panel-body">-->
+                        <!--<p class="text-primary"><h4>Basic panel example</h4></p>-->
 
-                    <p class="text-muted">描述</p>
+                        <!--<p class="text-muted">描述</p>-->
 
-                    <p class="text-info">2017</p>
-                </div>
-            </div>
-
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    Basic panel example
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    Basic panel example
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    Basic panel example
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    Basic panel example
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    Basic panel example
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    Basic panel example
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    Basic panel example
-                </div>
+                        <!--<p class="text-info">2017</p>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
 
             <!-- 翻页-->
             <nav aria-label="翻页">
                 <ul class="pager">
-                    <li class="previous disabled"><a href="#"><span aria-hidden="true">&larr;</span> Older</a></li>
-                    <li class="next"><a href="#">Newer <span aria-hidden="true">&rarr;</span></a></li>
+                    <li id="preBtn" class="previous"><a id="preLink" href="javascript:void(0)"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+                    <li id="nextBtn" class="next"><a id="nextLink" href="javascript:void(0)">下一页 <span aria-hidden="true">&rarr;</span></a></li>
                 </ul>
             </nav>
         </div>
 
         <!-- 右侧-->
-        <div class="col-md-4 hidden-xs hidden-sm">
+        <div class="col-md-4 col-sm-4 hidden-xs">
 
             <!-- 描述-->
             <div class="row" style="margin-right: 10%;margin-left: 10%;margin-top: 5%">
@@ -162,6 +129,8 @@
     </div>
 </div>
 
+<script src="js/common.js"></script>
 <script src="js/index.js"></script>
+
 </body>
 </html>

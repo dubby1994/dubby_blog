@@ -1,5 +1,6 @@
 package cn.dubby.blog.controller;
 
+import cn.dubby.blog.dto.PageDTO;
 import cn.dubby.blog.entity.Blog;
 import cn.dubby.blog.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,19 @@ public class BlogController {
     @RequestMapping(value = "{id}")
     public Blog findById(@PathVariable("id") long id) {
         return blogService.findById(id);
+    }
+
+    @RequestMapping(value = "page")
+    public PageDTO page(int offset, int limit) {
+        PageDTO pageDTO = new PageDTO();
+        if (offset > 0)
+            pageDTO.setHasPre(true);
+
+        int total = blogService.count();
+        if (total > offset+limit)
+            pageDTO.setHasNext(true);
+
+        return pageDTO;
     }
 
 }
