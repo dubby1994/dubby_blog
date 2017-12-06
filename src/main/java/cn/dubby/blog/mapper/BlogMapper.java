@@ -13,18 +13,18 @@ import java.util.List;
 @Mapper
 public interface BlogMapper {
 
-    @Select("SELECT id, title, description, createTime FROM BLOG ORDER BY createTime DESC LIMIT #{offset}, #{limit}")
+    @Select("SELECT id, title, description, createTime FROM blog ORDER BY createTime DESC LIMIT #{offset}, #{limit}")
     List<Blog> list(@Param(value = "offset") int offset, @Param(value = "limit") int limit);
 
-    @Select("SELECT * FROM BLOG WHERE ID = #{id}")
+    @Select("SELECT * FROM blog WHERE ID = #{id}")
     Blog findById(long id);
 
-    @Select("SELECT COUNT(id) FROM BLOG")
+    @Select("SELECT COUNT(id) FROM blog")
     int count();
 
-    @Select("SELECT id, title FROM BLOG WHERE id < #{id} ORDER BY id DESC LIMIT 1")
+    @Select("SELECT id, title FROM blog WHERE id < #{id} ORDER BY id DESC LIMIT 1")
     Blog getPreBlog(long id);
 
-    @Select("SELECT id, title FROM BLOG WHERE id > #{id} ORDER BY id ASC LIMIT 1")
+    @Select("SELECT id, title FROM blog WHERE id > #{id} ORDER BY id ASC LIMIT 1")
     Blog getNextBlog(long id);
 }
