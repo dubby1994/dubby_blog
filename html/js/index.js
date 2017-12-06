@@ -22,7 +22,7 @@ function freshBlogList(offset) {
                 date.setTime(item.createTime);
 
                 if(item.description == null || item.description == undefined) {
-                    description = "暂无简介";
+                    item.description = "暂无简介";
                 }
 
                 $("#blogList").append("<div class=\"panel panel-default\">\n" +
