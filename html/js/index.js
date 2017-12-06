@@ -21,6 +21,10 @@ function freshBlogList(offset) {
                 var date = new Date();
                 date.setTime(item.createTime);
 
+                if(item.description == null || item.description == undefined) {
+                    description = "暂无简介";
+                }
+
                 $("#blogList").append("<div class=\"panel panel-default\">\n" +
                     "                <div class=\"panel-body\">\n" +
                     "                    <p class=\"text-primary\"><h4><a href='" +
