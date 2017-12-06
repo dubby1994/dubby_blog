@@ -22,3 +22,24 @@ function getCookie(name) {
         }
     }
 }
+
+function hit() {
+    $.ajax({
+        type: 'get',
+        url: "hit",
+        cache: false,
+        dataType: 'json',
+        success: function (data) {
+            console.log(data);
+            return;
+        },
+        error: function () {
+            return;
+        }
+    });
+}
+
+$(document).ready(function () {
+    console.log("美团，点评，猫眼内推，邮件发送至yangzheng03@meituan.com");
+    hit();
+});

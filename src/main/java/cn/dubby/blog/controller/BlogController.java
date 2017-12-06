@@ -1,5 +1,6 @@
 package cn.dubby.blog.controller;
 
+import cn.dubby.blog.dto.DetailPageDTO;
 import cn.dubby.blog.dto.PageDTO;
 import cn.dubby.blog.entity.Blog;
 import cn.dubby.blog.service.BlogService;
@@ -37,10 +38,29 @@ public class BlogController {
             pageDTO.setHasPre(true);
 
         int total = blogService.count();
-        if (total > offset+limit)
+        if (total > offset + limit)
             pageDTO.setHasNext(true);
 
         return pageDTO;
     }
 
+    @RequestMapping(value = "detail/page")
+    public DetailPageDTO detailPage(int id) {
+        Blog pre = blogService.getPreBlog(id);
+        Blog next = blogService.getNextBlog(id);
+
+        DetailPageDTO pageDTO = new DetailPageDTO();
+        if (pre != null && pre.getId() != null && pre.getId() > 0) {
+            pageDTO.setHasPre(true);
+            pageDTO.setPre(pre.getId());
+            pageDTO.setPreTitle(pre.getTitle());
+        }
+        if (next != null && next.getId() != null && next.getId() > 0) {
+            pageDTO.setHasNext(true);
+            pageDTO.setNext(next.getId());
+            pageDTO.setNextTitle(next.getTitle());
+        }
+
+        return pageDTO;
+    }
 }

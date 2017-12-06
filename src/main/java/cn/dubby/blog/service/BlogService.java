@@ -27,4 +27,12 @@ public class BlogService {
     public int count() {
         return blogMapper.count();
     }
+
+    public Blog getPreBlog(long id) {
+        return blogMapper.getPreBlog(id);
+    }
+
+    public Blog getNextBlog(long id) {
+        return blogMapper.getNextBlog(id);
+    }
 }
