@@ -2,6 +2,7 @@
  * Created by teeyoung on 17/12/5.
  */
 var LIMIT_NUMBER = 10;
+var TAG_NUMBER = 20;
 
 /**
  * 查询最新10篇文章
@@ -21,7 +22,7 @@ function freshBlogList(offset) {
                 var date = new Date();
                 date.setTime(item.createTime);
 
-                if(item.description == null || item.description == undefined) {
+                if (item.description == null || item.description == undefined) {
                     item.description = "暂无简介";
                 }
 
@@ -42,6 +43,34 @@ function freshBlogList(offset) {
                     "</p>\n" +
                     "                </div>\n" +
                     "            </div>");
+            });
+        },
+        error: function () {
+            return;
+        }
+    });
+}
+
+function freshTagList() {
+    $.ajax({
+        type: 'get',
+        url: "tag/top",
+        cache: false,
+        data: {
+            limit: TAG_NUMBER
+        },
+        dataType: 'json',
+        success: function (data) {
+            jQuery.each(data, function (i, item) {
+                $("#tagList").append("<li class=\"list-group-item\"> <span class=\"badge\">" +
+                    item.count +
+                    "</span><a href=\"/list.html?tagId=" +
+                    item.tagId +
+                    "\"> " +
+                    item.tagName +
+                    "</a></li>"
+                )
+                ;
             });
         },
         error: function () {
@@ -94,6 +123,6 @@ $(document).ready(function () {
 
     freshBlogList(offset);
     getPageMessage(offset);
-
+    freshTagList();
 
 });

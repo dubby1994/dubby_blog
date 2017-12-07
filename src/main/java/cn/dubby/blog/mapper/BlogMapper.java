@@ -16,6 +16,9 @@ public interface BlogMapper {
     @Select("SELECT id, title, description, createTime FROM blog ORDER BY createTime DESC LIMIT #{offset}, #{limit}")
     List<Blog> list(@Param(value = "offset") int offset, @Param(value = "limit") int limit);
 
+    @Select("SELECT id, title, description, createTime, content FROM blog ORDER BY createTime DESC LIMIT #{offset}, #{limit}")
+    List<Blog> listWithContent(@Param(value = "offset") int offset, @Param(value = "limit") int limit);
+
     @Select("SELECT * FROM blog WHERE ID = #{id}")
     Blog findById(long id);
 

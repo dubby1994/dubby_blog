@@ -18,4 +18,10 @@ public interface TagMapper {
 
     @Select("SELECT * FROM tag WHERE ID = #{id}")
     Tag findById(long id);
+
+    @Select("SELECT count(id) FROM tag")
+    int count();
+
+    @Select("SELECT * FROM tag ORDER BY createTime DESC")
+    List<Tag> all();
 }

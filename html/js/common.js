@@ -40,6 +40,6 @@ function hit() {
 }
 
 $(document).ready(function () {
-    console.log("美团，点评，猫眼内推，邮件发送至yangzheng03@meituan.com");
+    //console.log("美团，点评，猫眼内推，邮件发送至yangzheng03@meituan.com");
     hit();
 });

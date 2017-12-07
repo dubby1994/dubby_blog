@@ -63,4 +63,9 @@ public class BlogController {
 
         return pageDTO;
     }
+
+    @RequestMapping(value = "list/tag")
+    public List<Blog> listByTag(long[] tagId) {
+        return blogService.listByTag(tagId);
+    }
 }
