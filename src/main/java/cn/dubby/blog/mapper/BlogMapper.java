@@ -22,6 +22,9 @@ public interface BlogMapper {
     @Select("SELECT * FROM blog WHERE ID = #{id}")
     Blog findById(long id);
 
+    @Select("SELECT id, title, description, createTime FROM blog WHERE ID = #{id}")
+    Blog findByIdWithoutContent(long id);
+
     @Select("SELECT COUNT(id) FROM blog")
     int count();
 

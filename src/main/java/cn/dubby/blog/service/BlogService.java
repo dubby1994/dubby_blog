@@ -68,7 +68,7 @@ public class BlogService {
 
         List<Blog> result = new ArrayList<>(blogIdSet.size());
         for (Long blogId : blogIdSet) {
-            result.add(blogMapper.findById(blogId));
+            result.add(blogMapper.findByIdWithoutContent(blogId));
         }
 
         return result;
