@@ -59,7 +59,7 @@ public class FileController {
             Map result = new HashMap();
 
             result.put("success", true);
-            result.put("url", "/upload/" + url);
+            result.put("path", path + "/" + url);
 
             return result;
         }
