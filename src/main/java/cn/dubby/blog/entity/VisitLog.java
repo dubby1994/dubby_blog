@@ -11,6 +11,27 @@ public class VisitLog {
 
     private String ip;
 
+    /** User-Agent */
+    private String ua;
+
+    private String cookie;
+
+    public String getUa() {
+        return ua;
+    }
+
+    public void setUa(String ua) {
+        this.ua = ua;
+    }
+
+    public String getCookie() {
+        return cookie;
+    }
+
+    public void setCookie(String cookie) {
+        this.cookie = cookie;
+    }
+
     public Long getId() {
         return id;
     }

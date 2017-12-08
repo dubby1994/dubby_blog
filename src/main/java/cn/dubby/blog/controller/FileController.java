@@ -16,9 +16,8 @@ import sun.misc.BASE64Encoder;
 import java.io.File;
 import java.io.IOException;
 import java.security.MessageDigest;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by teeyoung on 17/12/6.
@@ -36,9 +35,19 @@ public class FileController {
         Map<String, MultipartFile> multipartFileMap = request.getFileMap();
 
         for (Map.Entry<String, MultipartFile> entry : multipartFileMap.entrySet()) {
-            String url = System.currentTimeMillis() + entry.getValue().getOriginalFilename();
+            String originFileName = entry.getValue().getOriginalFilename();
+            String[] originFileNameSplit = originFileName.split("\\.");
+
+            String url = UUID.randomUUID().toString() + "." + originFileNameSplit[originFileNameSplit.length - 1];
+            Date date = new Date();
+            SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("yyyy-MM-dd");
+            String path = UPLOAD_PATH_KEY + dateTimeFormatter.format(date);
+            File dir = new File(path);
+            if (!dir.exists())
+                dir.mkdir();
+
             try {
-                File file = new File(UPLOAD_PATH_KEY + url);
+                File file = new File(path + "/" + url);
                 file.setExecutable(true, false);
                 file.setWritable(true, false);
                 file.setReadable(true, false);

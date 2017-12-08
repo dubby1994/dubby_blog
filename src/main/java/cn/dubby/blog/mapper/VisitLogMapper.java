@@ -14,7 +14,7 @@ import java.util.List;
 @Mapper
 public interface VisitLogMapper {
 
-    @Insert("INSERT INTO visit_log(ip) values(#{ip})")
-    int log(String ip);
+    @Insert("INSERT INTO visit_log(ip, cookie, ua) values(#{ip}, #{cookie}, #{ua})")
+    int log(@Param(value = "ip") String ip, @Param(value = "cookie") String cookie, @Param(value = "ua") String ua);
 
 }
