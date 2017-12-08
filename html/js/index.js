@@ -79,6 +79,22 @@ function freshTagList() {
     });
 }
 
+
+function freshPV() {
+    $.ajax({
+        type: 'get',
+        url: "hit/count",
+        cache: false,
+        dataType: 'json',
+        success: function (data) {
+            $("#pv").append(data);
+        },
+        error: function () {
+            return;
+        }
+    });
+}
+
 function getPageMessage(offset) {
     $.ajax({
         type: 'get',
@@ -124,5 +140,6 @@ $(document).ready(function () {
     freshBlogList(offset);
     getPageMessage(offset);
     freshTagList();
+    freshPV();
 
 });

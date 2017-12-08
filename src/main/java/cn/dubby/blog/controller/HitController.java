@@ -49,4 +49,9 @@ public class HitController {
         return "SUCCESS";
     }
 
+    @RequestMapping(value = "hit/count")
+    public long count(){
+        return visitLogMapper.count();
+    }
+
 }
