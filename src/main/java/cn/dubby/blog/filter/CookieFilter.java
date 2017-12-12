@@ -58,10 +58,12 @@ public class CookieFilter implements Filter {
         Cookie[] cookies = httpServletRequest.getCookies();
 
         boolean isNew = true;
-        for (Cookie cookie : cookies) {
-            if (VISIT_ID_COOKIE.equals(cookie.getName())) {
-                isNew = false;
-                break;
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (VISIT_ID_COOKIE.equals(cookie.getName())) {
+                    isNew = false;
+                    break;
+                }
             }
         }
 
