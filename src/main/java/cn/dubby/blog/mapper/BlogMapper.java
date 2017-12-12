@@ -1,9 +1,7 @@
 package cn.dubby.blog.mapper;
 
 import cn.dubby.blog.entity.Blog;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -33,4 +31,11 @@ public interface BlogMapper {
 
     @Select("SELECT id, title FROM blog WHERE id > #{id} ORDER BY id ASC LIMIT 1")
     Blog getNextBlog(long id);
+
+    @Insert(value = "INSERT INTO blog(title, description, content) VALUES(#{title}, #{description}, #{content})")
+    @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = Long.class)
+    int insert(Blog blog);
+
+    @Update(value = "UPDATE blog SET title = #{title}, description = #{description}, content = #{content} WHERE id = #{id}")
+    int update(@Param(value = "title") String title, @Param(value = "description") String description, @Param(value = "content") String content, @Param(value = "id") Long id);
 }

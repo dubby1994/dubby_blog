@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="dubby.ico">
+    <link rel="shortcut icon" href="dubby.ico">
+    <title id="page_title">博客管理</title>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="editormd/css/editormd.min.css"/>
+
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- 导航条分组，以便移动端显示 -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#dubby_navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DUBBY</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="dubby_navbar">
+            <ul class="nav navbar-nav">
+                <li><a style="color: #06b6ef" href="javascript:void(0)" onclick="save()">保存</a></li>
+            </ul>
+            <ul class="nav navbar-nav">
+                <li><a style="color: #06b6ef" href="javascript:void(0)" onclick="post()">发布</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row text-center">
+        <form>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 form-group text-center">
+                <input type="text" class="form-control"  id="title" placeholder="标题">
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 form-group text-center">
+                <input type="text" class="form-control"  id="description" placeholder="简介">
+            </div>
+
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+            <div style="width: 100%; height: 640px;">
+                <div id="editormd">
+                    <textarea style="display:none;">[TOC]</textarea>
+                </div>
+            </div>
+
+
+            <!-- 翻页-->
+            <!--<nav aria-label="翻页">-->
+                <!--<ul class="pager">-->
+                    <!--<li id="preBtn" class="previous"><a id="preLink" href="javascript:void(0)"></a></li>-->
+                    <!--<li id="nextBtn" class="next"><a id="nextLink" href="javascript:void(0)"></a></li>-->
+                <!--</ul>-->
+            <!--</nav>-->
+        </div>
+
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+        <br>
+
+        <hr>
+
+        <footer class="text-center">
+            <p>
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1264118107'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1264118107%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                | 2017-2017, DUBBY.CN, All Rights Reserved</p>
+        </footer>
+    </div>
+
+</div>
+
+<script src="js/common.js"></script>
+<script src="js/write.js"></script>
+
+<script src="editormd/lib/marked.min.js"></script>
+
+<script src="editormd/lib/prettify.min.js"></script>
+
+<script src="editormd/lib/raphael.min.js"></script>
+
+<script src="editormd/lib/underscore.min.js"></script>
+
+<script src="editormd/lib/sequence-diagram.min.js"></script>
+
+<script src="editormd/lib/flowchart.min.js"></script>
+
+<script src="editormd/lib/jquery.flowchart.min.js"></script>
+
+<script src="editormd/editormd.min.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        var editor = editormd("editormd", {
+            path: "editormd/lib/",// Autoload modules mode, codemirror, marked... dependents libs path
+            imageUpload: true,
+            imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            imageUploadURL: "file/upload"
+        });
+
+        /*
+         // or
+         var editor = editormd({
+         id   : "editormd",
+         path : "../lib/"
+         });
+         */
+    });
+</script>
+
+</body>
+</html>

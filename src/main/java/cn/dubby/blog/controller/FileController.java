@@ -33,7 +33,7 @@ public class FileController {
     @RequestMapping("upload")
     public Map upload(MultipartHttpServletRequest request) {
         Map<String, MultipartFile> multipartFileMap = request.getFileMap();
-
+        File file = null;
         for (Map.Entry<String, MultipartFile> entry : multipartFileMap.entrySet()) {
             String originFileName = entry.getValue().getOriginalFilename();
             String[] originFileNameSplit = originFileName.split("\\.");
@@ -47,7 +47,7 @@ public class FileController {
                 dir.mkdir();
 
             try {
-                File file = new File(path + "/" + url);
+                file = new File(path + "/" + url);
                 file.setExecutable(true, false);
                 file.setWritable(true, false);
                 file.setReadable(true, false);
@@ -58,14 +58,14 @@ public class FileController {
 
             Map result = new HashMap();
 
-            result.put("success", true);
-            result.put("path", path + "/" + url);
+            result.put("success", 1);
+            result.put("url", file.getAbsolutePath().replace("/file", ""));
 
             return result;
         }
         Map result = new HashMap();
 
-        result.put("success", false);
+        result.put("success", 0);
         result.put("message", "没有文件");
 
         return result;
