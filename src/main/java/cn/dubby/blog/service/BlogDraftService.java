@@ -84,7 +84,7 @@ public class BlogDraftService {
         Long blogId = blogDraft.getBlogId();
         if (blogDraft.getBlogId() != null && blogDraft.getBlogId() > 0) {
             //更新
-            blogMapper.update(blogDraft.getTitle(), blogDraft.getDescription(), blogDraft.getContent(), blogDraft.getId());
+            blogMapper.update(blogDraft.getTitle(), blogDraft.getDescription(), blogDraft.getContent(), blogDraft.getBlogId());
         } else {
             //插入
             Blog blog = new Blog();
