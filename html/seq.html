@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="dubby.ico">
+    <link rel="shortcut icon" href="dubby.ico">
+    <title id="pageTitle">时序图</title>
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link href="editormd/css/editormd.preview.min.css" rel="stylesheet">
+
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <!-- 时序图 -->
+    <link href="js-sequence-diagrams_files/style.css" rel="stylesheet" type="text/css">
+    <link href="js-sequence-diagrams_files/sequence-diagram-min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- 导航条分组，以便移动端显示 -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#dubby_navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DUBBY</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="dubby_navbar">
+            <ul class="nav navbar-nav">
+                <li><a id="download" style="color: #0080FF" href="#" role="button">下载图片</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6 text-center">
+            <form role="form" style="height: 600px">
+
+
+                <div class="form-group">
+                    <div class="editor form-group">
+                        <textarea id="input" cols="80" rows="15">Title: 这是时序图的标题
+Note left of A: A左边的注释
+Note over A: A上的注释
+A->B: Says Hello
+Note right of B: B右边的注释
+B-->A: How are you?
+A->>B: I am good thanks!
+# 注释</textarea>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6 text-center">
+            <div id="diagram"></div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+        <br>
+
+        <hr>
+
+        <footer class="text-center">
+            <p>
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                document.write(unescape("%3Cspan id='cnzz_stat_icon_1264118107'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s13.cnzz.com/z_stat.php%3Fid%3D1264118107%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                | 2017-2017, DUBBY.CN, All Rights Reserved
+            </p>
+        </footer>
+    </div>
+
+</div>
+
+<script src="js-sequence-diagrams_files/jquery.min.js"></script>
+
+<!-- Needed for the text editor -->
+<script src="js-sequence-diagrams_files/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="js-sequence-diagrams_files/webfont.js"></script>
+<script src="js-sequence-diagrams_files/snap.svg-min.js"></script>
+<script src="js-sequence-diagrams_files/underscore-min.js"></script>
+<script src="js-sequence-diagrams_files/sequence-diagram-snap-min.js"></script>
+
+<script src="js-sequence-diagrams_files/svginnerhtml.min.js"></script>
+<script type="text/javascript">
+
+    function setup_editor() {
+        var diagram_div = $("#diagram");
+        var download_link = $("#download");
+        download_link.click(function(ev) {
+            var svg = diagram_div.find('svg')[0];
+            var width = parseInt(svg.width.baseVal.value);
+            var height = parseInt(svg.height.baseVal.value);
+            var data = $("#input").val();
+            var xml = '<?xml version="1.0" encoding="utf-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"><svg xmlns="http://www.w3.org/2000/svg" width="' + width + '" height="' + height + '" xmlns:xlink="http://www.w3.org/1999/xlink"><source><![CDATA[' + data + ']]></source>' + svg.innerHTML + '</svg>';
+
+            var a = $(this);
+            a.attr("download", "diagram.svg"); // TODO I could put title here
+            a.attr("href", "data:image/svg+xml," + encodeURIComponent(xml));
+        });
+
+        $("#input").change(on_change);
+        on_change();
+
+        function on_change() {
+            try {
+                var diagram = Diagram.parse($("#input").val());
+
+                // Clear out old diagram
+                diagram_div.html('');
+
+                var options = {
+                    theme: 'simple',
+                    scale: 1
+                };
+
+                // Draw
+                diagram.drawSVG(diagram_div.get(0), options);
+
+            } catch(err) {
+                var annotation = {
+                    type: "error", // also warning and information
+                    column: 0,
+                    row: 0,
+                    text: err.message
+                };
+                if (err instanceof Diagram.ParseError) {
+                    annotation.row    = err.loc.first_line - 1;
+                    annotation.column = err.loc.first_column;
+                }
+                throw err;
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        setup_editor();
+    })
+</script>
+
+</body>
+</html>
