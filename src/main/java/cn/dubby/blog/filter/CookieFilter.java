@@ -45,13 +45,20 @@ public class CookieFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse;
 
+        String ip;
+        ip = httpServletRequest.getHeader("X-Real-IP");
+        if (StringUtils.isEmpty(ip))
+            ip = httpServletRequest.getHeader("REMOTE-HOST");
+        if (StringUtils.isEmpty(ip))
+            ip = httpServletRequest.getHeader("X-Forwarded-For");
+
         if (!checkRefer(httpServletRequest)) {
-            logger.info(httpServletRequest.getHeader("Referer") + ":" + httpServletRequest.getRequestURI());
+            logger.error("referer error, ip is {}, uri is {}", ip, httpServletRequest.getRequestURI());
             return;
         }
 
         if (!checkUA(httpServletRequest)) {
-            logger.info(httpServletRequest.getHeader("User-Agent") + ":" + httpServletRequest.getRequestURI());
+            logger.error("ua error, ip is {}, uri is {}", ip, httpServletRequest.getRequestURI());
             return;
         }
 
