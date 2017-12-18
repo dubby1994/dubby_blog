@@ -49,7 +49,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/tool.html">工具</a></li>
                 <li>
-                    <form action="javascript:void(0)" class="navbar-form">
+                    <form action="#" class="navbar-form">
                         <div class="form-group">
                             <input id="key" name="key" type="text" class="form-control" placeholder="关键词">
                         </div>
@@ -65,9 +65,9 @@
 <div class="container-fluid">
     <div class="row">
         <!-- 左侧-->
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
 
-            <div class="col-md-12" id="blogList">
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" id="blogList">
                 <!--<div class="panel panel-default">-->
                     <!--<div class="panel-body">-->
                         <!--<p class="text-primary"><h4>Basic panel example</h4></p>-->
@@ -78,54 +78,9 @@
                     <!--</div>-->
                 <!--</div>-->
             </div>
-
-            <!-- 翻页-->
-            <nav aria-label="翻页">
-                <ul class="pager">
-                    <li id="preBtn" class="previous"><a id="preLink" href="javascript:void(0)"><span aria-hidden="true">&larr;</span> 上一页</a></li>
-                    <li id="nextBtn" class="next"><a id="nextLink" href="javascript:void(0)">下一页 <span aria-hidden="true">&rarr;</span></a></li>
-                </ul>
-            </nav>
         </div>
 
-        <!-- 右侧-->
-        <div class="col-md-4 hidden-sm hidden-xs">
 
-            <!-- 描述-->
-            <div class="row text-center" style="margin-right: 10%;margin-left: 10%;margin-top: 5%">
-                <p>
-                    访问次数(PV)：
-                    <span id="pv"></span>
-                </p>
-                <hr>
-            </div>
-
-            <div class="row text-center" style="margin-right: 10%;margin-left: 10%">
-                <h4>微信扫码关注订阅号</h4>
-                <img src="http://www.dubby.cn//upload/1504774761775ITBus.jpg" alt="微信扫码关注订阅号">
-            </div>
-
-
-            <!-- 标签-->
-            <div class="row" style="margin-right: 5%;margin-left: 5%">
-                <ul class="list-group" id="tagList">
-                    <!--<li class="list-group-item">-->
-                        <!--<span class="badge">10</span>-->
-                        <!--Redis-->
-                    <!--</li>-->
-                    <!--<li class="list-group-item">-->
-                        <!--<span class="badge">2</span>-->
-                        <!--MySQL-->
-                    <!--</li>-->
-                </ul>
-            </div>
-
-            <!-- 统计-->
-            <div class="row">
-
-            </div>
-
-        </div>
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
@@ -142,7 +97,7 @@
 </div>
 
 <script src="js/common.js?_=1"></script>
-<script src="js/index.js"></script>
+<script src="js/search.js"></script>
 
 </body>
 </html>

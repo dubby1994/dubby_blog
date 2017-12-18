@@ -6,11 +6,9 @@ import cn.dubby.blog.mapper.BlogMapper;
 import cn.dubby.blog.mapper.BlogTagMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by teeyoung on 17/12/5.
@@ -71,6 +69,19 @@ public class BlogService {
             result.add(blogMapper.findByIdWithoutContent(blogId));
         }
 
+        return result;
+    }
+
+    public Set<Blog> search(String keyword) {
+        if (StringUtils.isEmpty(keyword)) return Collections.emptySet();
+        List<Blog> titleList = blogMapper.searchByTitle(keyword);
+        List<Blog> descList = blogMapper.searchByDescription(keyword);
+        List<Blog> contentList = blogMapper.searchByContent(keyword);
+
+        Set<Blog> result = new HashSet<>();
+        result.addAll(titleList);
+        result.addAll(descList);
+        result.addAll(contentList);
         return result;
     }
 }

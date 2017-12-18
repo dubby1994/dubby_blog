@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by teeyoung on 17/12/5.
@@ -20,6 +21,11 @@ public class BlogController {
 
     @Autowired
     private BlogService blogService;
+
+    @RequestMapping(value = "search")
+    public Set<Blog> search(String keyword) {
+        return blogService.search(keyword);
+    }
 
     @RequestMapping(value = "list")
     public List<Blog> list(int offset, int limit) {

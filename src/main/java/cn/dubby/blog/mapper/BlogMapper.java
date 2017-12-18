@@ -11,6 +11,15 @@ import java.util.List;
 @Mapper
 public interface BlogMapper {
 
+    @Select("SELECT id, title, description, createTime, content FROM blog WHERE LOWER(title) like LOWER(CONCAT('%',#{title},'%'))  ORDER BY createTime DESC  LIMIT 10")
+    List<Blog> searchByTitle(@Param(value = "title") String title);
+
+    @Select("SELECT id, title, description, createTime, content FROM blog WHERE LOWER(content) like LOWER(CONCAT('%',#{content},'%'))  ORDER BY createTime DESC  LIMIT 10")
+    List<Blog> searchByContent(@Param(value = "content") String content);
+
+    @Select("SELECT id, title, description, createTime, content FROM blog WHERE LOWER(description) like LOWER(CONCAT('%',#{description},'%')) ORDER BY createTime DESC  LIMIT 10")
+    List<Blog> searchByDescription(@Param(value = "description") String description);
+
     @Select("SELECT id, title, description, createTime FROM blog ORDER BY createTime DESC LIMIT #{offset}, #{limit}")
     List<Blog> list(@Param(value = "offset") int offset, @Param(value = "limit") int limit);
 
