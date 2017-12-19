@@ -84,8 +84,15 @@ public class FileController {
 
             String tempName = base64en.encode(md5.digest(content.getBytes("UTF-8")));
 
+            Date date = new Date();
+            SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("yyyy-MM-dd");
+            String path = UPLOAD_PATH_KEY + dateTimeFormatter.format(date);
+            File dir = new File(path);
+            if (!dir.exists())
+                dir.mkdir();
+
             String fileName = "qrcode/" + tempName + ".png";
-            File file = new File(UPLOAD_PATH_KEY + fileName);
+            File file = new File(path + "/" + fileName);
             if (file.exists()) {
                 result.put("url", "/upload/" + fileName);
                 return result;
