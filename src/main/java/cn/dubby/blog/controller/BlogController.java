@@ -1,5 +1,6 @@
 package cn.dubby.blog.controller;
 
+import cn.dubby.blog.dto.BlogSearchDTO;
 import cn.dubby.blog.dto.DetailPageDTO;
 import cn.dubby.blog.dto.PageDTO;
 import cn.dubby.blog.entity.Blog;
@@ -23,7 +24,7 @@ public class BlogController {
     private BlogService blogService;
 
     @RequestMapping(value = "search")
-    public Set<Blog> search(String keyword) {
+    public List<BlogSearchDTO> search(String keyword) {
         return blogService.search(keyword);
     }
 
