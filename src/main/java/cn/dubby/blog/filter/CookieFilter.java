@@ -33,6 +33,8 @@ public class CookieFilter implements Filter {
 
     private static final String DOMAIN = "dubby.cn";
 
+    private static final String TIP_MESSAGE = "大神，想来美团点评吗？内推，简历发到yangzheng03@meituan.com，期待您的加入；如果想给网站增加友情链接也可发邮件到yang_zheng1994@163.com；关于网站和文章的任何反馈意见也可以发到yang_zheng1994@163.com；感谢🤝";
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         HOST_SET.add(DOMAIN);
@@ -54,11 +56,17 @@ public class CookieFilter implements Filter {
 
         if (!checkRefer(httpServletRequest)) {
             logger.error("referer error, ip is {}, uri is {}", ip, httpServletRequest.getRequestURI());
+            httpServletResponse.setCharacterEncoding("UTF-8");
+            httpServletResponse.setHeader("Content-type", "text/html;charset=UTF-8");
+            httpServletResponse.getOutputStream().write(TIP_MESSAGE.getBytes("UTF-8"));
             return;
         }
 
         if (!checkUA(httpServletRequest)) {
             logger.error("ua error, ip is {}, uri is {}", ip, httpServletRequest.getRequestURI());
+            httpServletResponse.setCharacterEncoding("UTF-8");
+            httpServletResponse.setHeader("Content-type", "text/html;charset=UTF-8");
+            httpServletResponse.getOutputStream().write(TIP_MESSAGE.getBytes("UTF-8"));
             return;
         }
 
