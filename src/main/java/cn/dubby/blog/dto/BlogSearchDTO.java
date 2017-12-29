@@ -17,6 +17,9 @@ public class BlogSearchDTO extends Blog {
         super.setUpdateTime(blog.getUpdateTime());
     }
 
+    public BlogSearchDTO() {
+    }
+
     public int getScore() {
         return score;
     }
