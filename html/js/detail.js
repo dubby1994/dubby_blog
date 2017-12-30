@@ -53,7 +53,7 @@ function getPageMessage(blogId) {
             if (data.hasPre) {
                 $("#preBtn").removeClass("disabled");
                 $("#preLink").attr('href', '/detail.html?id=' + data.pre);
-                $("#preLink").append("<span aria-hidden=\"true\">&larr;</span> " + data.preTitle);
+                $("#preLink").append(data.preTitle + "<span aria-hidden=\"true\">&rarr;</span> ");
             } else {
                 $("#preBtn").addClass("disabled");
                 $("#preLink").append("没了");
@@ -63,7 +63,7 @@ function getPageMessage(blogId) {
             if (data.hasNext) {
                 $("#nextBtn").removeClass("disabled");
                 $("#nextLink").attr('href', '/detail.html?id=' + data.next);
-                $("#nextLink").append(data.nextTitle + " <span aria-hidden=\"true\">&rarr;</span>");
+                $("#nextLink").append(" <span aria-hidden=\"true\">&larr;</span>" + data.nextTitle);
             } else {
                 $("#nextBtn").addClass("disabled");
                 $("#nextLink").append("没了");

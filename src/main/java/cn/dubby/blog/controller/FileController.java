@@ -86,22 +86,27 @@ public class FileController {
 
             Date date = new Date();
             SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("yyyy-MM-dd");
-            String path = UPLOAD_PATH_KEY + dateTimeFormatter.format(date);
+            String path = UPLOAD_PATH_KEY + dateTimeFormatter.format(date) + "/qrcode";
             File dir = new File(path);
             if (!dir.exists())
                 dir.mkdir();
 
-            String fileName = "qrcode/" + tempName + ".png";
+            String fileName = tempName + ".png";
             File file = new File(path + "/" + fileName);
             if (file.exists()) {
-                result.put("url", "/upload/" + fileName);
+                result.put("url", "/upload/" + dateTimeFormatter.format(date) + "/qrcode/" + fileName);
                 return result;
             }
+
+            file.createNewFile();
+
+            logger.warn("matrix is null?", matrix == null);
+            logger.warn("file is null?", file == null);
 
             MatrixToImageWriter.writeToPath(matrix, "png", file.toPath());
 
 
-            result.put("url", "/upload/" + fileName);
+            result.put("url", "/upload/" + dateTimeFormatter.format(date) + "/qrcode/" + fileName);
             return result;
         } catch (Exception e) {
             logger.error("qrcode", e);
