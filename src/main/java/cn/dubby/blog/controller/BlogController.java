@@ -119,6 +119,10 @@ public class BlogController {
                         }
                     }
 
+                    if (dto.getDescription() == null || dto.getDescription().equals("null")) {
+                        dto.setDescription("暂无简介");
+                    }
+
                     result.add(dto);
                 }
             }
