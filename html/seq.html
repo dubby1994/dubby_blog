@@ -20,6 +20,17 @@
     <!-- 时序图 -->
     <link href="js-sequence-diagrams_files/style.css" rel="stylesheet" type="text/css">
     <link href="js-sequence-diagrams_files/sequence-diagram-min.css" rel="stylesheet" type="text/css">
+
+    <style type="text/css">
+        .dubby_right {
+            float: right;
+        }
+
+        .dubby_left {
+            float: left;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -47,14 +58,19 @@
 
 <div class="container-fluid">
 
+    <div>
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12" style="padding: 0" loop="loop">
+            <audio src="https://www.dubby.cn/upload/1512644145367onlove.mp3" controls="controls">
+            </audio>
+        </div>
+    </div>
+
     <div class="row">
-        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6 text-center">
-            <form role="form" style="height: 600px">
-
-
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6 text-center dubby_left">
+            <form id="inputArea" role="form" style="height: 100%">
                 <div class="form-group">
                     <div class="editor form-group">
-                        <textarea id="input" cols="80" rows="15">Title: 这是时序图的标题
+                        <textarea id="input" cols="80" rows="20">Title: 这是时序图的标题
 Note left of A: A左边的注释
 Note over A: A上的注释
 A->B: Says Hello
@@ -67,7 +83,7 @@ A->>B: I am good thanks!
             </form>
 
         </div>
-        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6 text-center">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-lg-6 text-center dubby_right">
             <div id="diagram"></div>
         </div>
     </div>
@@ -104,7 +120,7 @@ A->>B: I am good thanks!
     function setup_editor() {
         var diagram_div = $("#diagram");
         var download_link = $("#download");
-        download_link.click(function(ev) {
+        download_link.click(function (ev) {
             var svg = diagram_div.find('svg')[0];
             var width = parseInt(svg.width.baseVal.value);
             var height = parseInt(svg.height.baseVal.value);
@@ -134,7 +150,7 @@ A->>B: I am good thanks!
                 // Draw
                 diagram.drawSVG(diagram_div.get(0), options);
 
-            } catch(err) {
+            } catch (err) {
                 var annotation = {
                     type: "error", // also warning and information
                     column: 0,
@@ -142,7 +158,7 @@ A->>B: I am good thanks!
                     text: err.message
                 };
                 if (err instanceof Diagram.ParseError) {
-                    annotation.row    = err.loc.first_line - 1;
+                    annotation.row = err.loc.first_line - 1;
                     annotation.column = err.loc.first_column;
                 }
                 throw err;
@@ -154,6 +170,14 @@ A->>B: I am good thanks!
         setup_editor();
     })
 </script>
+
+<script>
+    $("#inputArea").height(window.innerHeight - 200);
+    $("#input").height(window.innerHeight - 200);
+    $("#input").width(window.innerWidth / 2);
+
+</script>
+
 
 </body>
 </html>
