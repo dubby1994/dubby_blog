@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="dubby.ico">
     <link rel="shortcut icon" href="dubby.ico">
-    <title id="pageTitle">杨正的个人博客</title>
+    <title id="title">杨正的个人博客</title>
 
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
 
     <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="bootstrap/bootstrap-theme.min.css">
-
-    <link href="editormd/css/editormd.preview.min.css" rel="stylesheet">
 
     <script src="bootstrap/jquery.min.js"></script>
 
@@ -38,50 +36,35 @@
 
         <div class="collapse navbar-collapse" id="dubby_navbar">
             <ul class="nav navbar-nav">
-                <li><a href="javascript:void(0)">时间是一切财富中最宝贵的财富</a></li>
+                <!--<li><a href="http://draw.dubby.cn"><font color="red">绘图工具（支持UML，时序图等，专为程序员而生）</font></a></li>-->
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/tool.html">工具</a></li>
+            </ul>
+
         </div>
     </div>
 </nav>
 
 <div class="container-fluid">
 
-    <div class="row text-center">
-        <div class="ol-md-12 col-sm-12 col-xs-12 col-lg-12 text-center">
-            <b><p id="title" style="font-size: large"></p></b>
-        </div>
-    </div>
+    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
 
-    <div class="row text-center">
-        <p id="createTime" class="text-info"></p>
-    </div>
-
-    <div class="row">
-        <div class="col-md-2"></div>
-
-        <div class="ol-md-10 col-sm-12 col-xs-12 col-lg-8">
-            <div id="editormd-view" class="markdown-body editormd-html-preview">
+        <form>
+            <div class="form-group">
+                <label for="content">二维码的内容：</label>
+                <textarea class="form-control" id="content" placeholder="二维码的内容" rows="3"></textarea>
             </div>
+            <button type="button" class="btn btn-default pull-right" onclick="convertContentToQRCode()">转换成二维码</button>
+        </form>
 
-            <!-- 翻页-->
-            <nav aria-label="翻页">
-                <ul class="pager">
-                    <li id="preBtn" class="next"><a id="preLink" href="javascript:void(0)"></a></li>
-                    <li id="nextBtn" class="previous"><a id="nextLink" href="javascript:void(0)"></a></li>
-                </ul>
-            </nav>
+        <div class="text-center">
+            <img id="qrcode" src="" alt="">
         </div>
 
-        <div class="col-md-2"></div>
-
-        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center">
-            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 text-center">
-                <p>微信扫码关注订阅号ITBusTech，获取更多精彩内容</p>
-            </div>
-
-            <img src="http://www.dubby.cn/upload/1504774761775ITBus.jpg" alt="ITBusTech">
-        </div>
     </div>
+
 
     <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
         <br>
@@ -97,25 +80,7 @@
 
 </div>
 
-<script src="js/common.js"></script>
-<script src="js/detail.js"></script>
-
-<script src="editormd/lib/marked.min.js"></script>
-
-<script src="editormd/lib/prettify.min.js"></script>
-
-<script src="editormd/lib/raphael.min.js"></script>
-
-<script src="editormd/lib/underscore.min.js"></script>
-
-<script src="editormd/lib/sequence-diagram.min.js"></script>
-
-<script src="editormd/lib/flowchart.min.js"></script>
-
-<script src="editormd/lib/jquery.flowchart.min.js"></script>
-
-<script src="editormd/editormd.min.js"></script>
-
+<script src="js/qrcode.js"></script>
 
 </body>
 </html>

@@ -89,7 +89,7 @@ public class FileController {
             String path = UPLOAD_PATH_KEY + dateTimeFormatter.format(date) + "/qrcode";
             File dir = new File(path);
             if (!dir.exists())
-                dir.mkdir();
+                dir.mkdirs();
 
             String fileName = tempName + ".png";
             File file = new File(path + "/" + fileName);
