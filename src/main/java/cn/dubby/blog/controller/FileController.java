@@ -8,6 +8,7 @@ import com.google.zxing.common.BitMatrix;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -72,17 +73,23 @@ public class FileController {
     }
 
     @RequestMapping(value = "qrcode")
-    public Object getURLQRCode(String content) {
+    public Object getURLQRCode(String content, @RequestParam(name = "w", required = false, defaultValue = "300") int width, @RequestParam(name = "h", required = false, defaultValue = "300") int height) {
         try {
+            if (width > 3000 )
+                width = 300;
+            if (height > 3000)
+                height = 300;
+
             MessageDigest md5 = MessageDigest.getInstance("MD5");
             BASE64Encoder base64en = new BASE64Encoder();
 
             Map<String, String> result = new HashMap<>();
             Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
             hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-            BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, 300, 300, hints);
+            BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);
 
             String tempName = base64en.encode(md5.digest(content.getBytes("UTF-8")));
+            tempName = tempName.replace("/", "-");
 
             Date date = new Date();
             SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -99,9 +106,6 @@ public class FileController {
             }
 
             file.createNewFile();
-
-            logger.warn("matrix is null?", matrix == null);
-            logger.warn("file is null?", file == null);
 
             MatrixToImageWriter.writeToPath(matrix, "png", file.toPath());
 

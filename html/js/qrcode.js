@@ -13,7 +13,9 @@ function convertContentToQRCode() {
         type: 'post',
         url: "file/qrcode",
         data: {
-            content: content
+            content: content,
+            w: 600,
+            h: 600
         },
         cache: false,
         dataType: 'json',
