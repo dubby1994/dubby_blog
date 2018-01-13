@@ -86,6 +86,7 @@ public class CookieFilter implements Filter {
             Cookie cookie = new Cookie(VISIT_ID_COOKIE, UUID.randomUUID().toString());
             cookie.setMaxAge(60 * 60 * 24 * 365);
             cookie.setHttpOnly(true);
+            cookie.setDomain("dubby.cn");
             httpServletResponse.addCookie(cookie);
         }
 

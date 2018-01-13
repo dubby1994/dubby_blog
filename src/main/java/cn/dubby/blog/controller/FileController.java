@@ -75,7 +75,7 @@ public class FileController {
     @RequestMapping(value = "qrcode")
     public Object getURLQRCode(String content, @RequestParam(name = "w", required = false, defaultValue = "300") int width, @RequestParam(name = "h", required = false, defaultValue = "300") int height) {
         try {
-            if (width > 3000 )
+            if (width > 3000)
                 width = 300;
             if (height > 3000)
                 height = 300;
@@ -88,7 +88,7 @@ public class FileController {
             hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
             BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);
 
-            String tempName = base64en.encode(md5.digest(content.getBytes("UTF-8")));
+            String tempName = base64en.encode(md5.digest(content.getBytes("UTF-8"))) + width + "-" + height;
             tempName = tempName.replace("/", "-");
 
             Date date = new Date();
