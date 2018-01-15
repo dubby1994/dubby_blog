@@ -64,7 +64,7 @@
     <div class="row">
         <div class="col-md-2"></div>
 
-        <div class="ol-md-10 col-sm-12 col-xs-12 col-lg-8">
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-8">
             <div id="editormd-view" class="markdown-body editormd-html-preview">
             </div>
 
@@ -75,6 +75,37 @@
                     <li id="nextBtn" class="previous"><a id="nextLink" href="javascript:void(0)"></a></li>
                 </ul>
             </nav>
+
+            <br>
+
+
+
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                <form>
+                    <div class="form-group">
+                        <label for="comment">评论</label>
+                        <textarea class="form-control" id="comment" rows="3"></textarea>
+                    </div>
+
+                    <button type="button" class="btn btn-default" onclick="commit()">提交</button>
+                </form>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-8">
+                <h4 class="text-info">&nbsp;评论列表：</h4>
+            </div>
+
+            <div class="col-md-12" id="commentList">
+                <!--<div class="panel panel-default">-->
+                    <!--<div class="panel-body">-->
+                        <!--<p class="text-info">2017</p>-->
+                        <!--<p class="text-muted">描述</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+
+
+
         </div>
 
         <div class="col-md-2"></div>

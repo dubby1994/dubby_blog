@@ -76,6 +76,76 @@ function getPageMessage(blogId) {
     });
 }
 
+function freshCommentList(id) {
+    $.ajax({
+        type: 'get',
+        url: "comment/list",
+        cache: false,
+        data: {
+            blogId: id
+        },
+        dataType: 'json',
+        success: function (data) {
+            $("#commentList").html("");
+            jQuery.each(data, function (i, item) {
+                var date = new Date();
+                date.setTime(item.createTime);
+
+                $("#commentList").append("<div class=\"panel panel-default\"> <div class=\"panel-body\"> <p class=\"text-info\">" +
+                    date.toLocaleDateString() +
+                    "</p> <p class=\"text-muted\">" +
+                    item.content +
+                    "</p> </div> </div>");
+            });
+
+
+        },
+        error: function () {
+            return;
+        }
+    });
+}
+
+function commit() {
+    var id = getUrlParam("id");
+    if (id != null && id != undefined) {
+        id = parseInt(id);
+
+        var content = $("#comment").val();
+
+        if (content == undefined || content == null || content == "") {
+            alert("内容不能为空");
+            return;
+        }
+
+        $.ajax({
+            type: 'post',
+            url: "comment/save",
+            cache: false,
+            dataType: 'json',
+            data: {
+                blogId: id,
+                content: content
+            },
+            success: function (data) {
+                if (data.code == 0) {
+                    // alert("评论成功");
+                    freshCommentList(id);
+
+                    $("#comment").val("");
+                } else {
+                    alert(data.message);
+                }
+            },
+            error: function () {
+                return;
+            }
+        });
+    }
+
+    return false;
+}
+
 $(document).ready(function () {
     var id = getUrlParam("id");
     if (id != null && id != undefined) {
@@ -86,4 +156,5 @@ $(document).ready(function () {
 
     freshDetail(id);
     getPageMessage(id);
+    freshCommentList(id);
 });
