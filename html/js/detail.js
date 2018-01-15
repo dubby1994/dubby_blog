@@ -91,7 +91,7 @@ function freshCommentList(id) {
                 var date = new Date();
                 date.setTime(item.createTime);
 
-                $("#commentList").append("<div class=\"panel panel-default\"> <div class=\"panel-body\"> <p class=\"text-info\">" +
+                $("#commentList").append("<div class=\"panel panel-default\"> <div class=\"panel-body\"> <p class=\"text-primary\">" +
                     date.toLocaleDateString() +
                     "</p> <p class=\"text-muted\">" +
                     item.content +
