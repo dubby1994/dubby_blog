@@ -195,7 +195,7 @@ $(document).ready(function () {
 
     freshBlogList(offset);
     getPageMessage(offset);
-    freshTagList();
+    // freshTagList();
     freshPV();
 
 });
