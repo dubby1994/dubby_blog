@@ -9,6 +9,7 @@ import java.util.List;
  * Created by yangzheng03 on 2018/1/15.
  */
 @Mapper
+@CacheNamespace
 public interface CommentMapper {
 
     @Insert(value = "INSERT INTO comment(blogId, content) VALUES(#{blogId}, #{content})")

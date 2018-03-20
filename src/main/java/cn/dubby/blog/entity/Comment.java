@@ -1,11 +1,12 @@
 package cn.dubby.blog.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by yangzheng03 on 2018/1/15.
  */
-public class Comment {
+public class Comment implements Serializable {
 
     private Long id;
 

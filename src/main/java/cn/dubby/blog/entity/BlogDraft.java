@@ -1,12 +1,13 @@
 package cn.dubby.blog.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 博客草稿，没有确认不会展示在网站上
  * Created by teeyoung on 17/12/5.
  */
-public class BlogDraft {
+public class BlogDraft implements Serializable {
 
     private Long id;
 

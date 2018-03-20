@@ -9,6 +9,7 @@ import java.util.List;
  * Created by teeyoung on 17/12/5.
  */
 @Mapper
+@CacheNamespace
 public interface BlogMapper {
 
     @Select("SELECT id, title, description, createTime, content FROM blog WHERE LOWER(title) like LOWER(CONCAT('%',#{title},'%'))  ORDER BY createTime DESC  LIMIT 10")

@@ -1,9 +1,11 @@
 package cn.dubby.blog.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by teeyoung on 17/12/12.
  */
-public class Configuration {
+public class Configuration implements Serializable {
     private String name;
     private String value;
 
