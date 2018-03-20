@@ -5,6 +5,8 @@ import cn.dubby.blog.entity.Tag;
 import cn.dubby.blog.mapper.BlogMapper;
 import cn.dubby.blog.mapper.BlogTagMapper;
 import cn.dubby.blog.mapper.TagMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,8 @@ import java.util.Set;
 @Component
 public class ScheduledTagTasks {
 
+    private static final Logger logger = LoggerFactory.getLogger(ScheduledTagTasks.class);
+
     @Autowired
     private BlogMapper blogMapper;
 
@@ -32,7 +36,7 @@ public class ScheduledTagTasks {
 
     @Scheduled(fixedRate = 1000 * 60 * 60)
     public void generateTag() {
-        System.out.println("generateTag started");
+        logger.info("generateTag started");
         int tagCount = tagMapper.count();
         List<Tag> tagList = tagMapper.list(0, tagCount);
 
@@ -80,7 +84,7 @@ public class ScheduledTagTasks {
                 }
             }
         }
-        System.out.println("generateTag completed");
+        logger.info("generateTag completed");
     }
 
 //    @Scheduled(cron = "10 * * * * *")
