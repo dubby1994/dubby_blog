@@ -2,11 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>nn&ww</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>闹闹&歪歪</title>
+    <script src="bootstrap/jquery.min.js"></script>
 </head>
+
+
+<style>
+    .pic {
+        position: relative;
+    }
+
+    img{
+        position: relative;
+        width:100%;
+        height:100%;
+        display: none;
+    }
+
+</style>
+
 <body>
 
-<img src="/upload/2019-05-20/07522614-00e4-4e92-a97c-957b197f6dfa.jpg"/>
+<div class="pic">
+    <img src="https://www.dubby.cn/upload/2019-05-20/07522614-00e4-4e92-a97c-957b197f6dfa.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/de07817c-de47-4790-ac08-827a83a73104.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/e287b9ae-820d-452a-8d10-57f38d4a6aeb.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/f94b46d1-e905-41d3-bc33-40420e64d635.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/a18808f6-9462-4069-955f-eacbc41040dd.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/0e02ed5d-419e-431b-85b3-730310b9bf3f.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/0bcd7186-97ec-4953-9f32-424bc4c784a3.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/ecb5960b-f2a0-4668-8eb9-af2a9a3b4c1c.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/4d27989d-989b-474d-9127-7875140dac24.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/fd853c3f-b842-4c22-9ae6-81bf09e58e9a.jpg" alt="我爱你">
+
+    <img src="https://www.dubby.cn/upload/2019-05-20/7e5465e3-f683-4a77-a9b8-43c1c98107b0.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/b8db1b1d-2020-48cf-87dc-c6ac8ed55ab6.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/07b4ed66-5083-45aa-9530-679def46f68a.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/5fb63098-e41c-4fc1-bfa7-8fe53f4df131.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/952c201f-a440-4284-8d83-ce02b7279a8a.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/ba3abe22-b447-41f7-b144-4da61ad5dd5e.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/91b7d77d-d848-4026-818c-819a4b747e8e.jpg" alt="我爱你">
+    <img src="https://www.dubby.cn/upload/2019-05-20/9c9634f5-cca4-4dc5-9bcc-6e9d43406376.jpg" alt="我爱你">
+</div>
+
+<script>
+    $(function () {
+        var index = -1;
+        var pic = $('.pic>img');
+        var length = pic.length;
+        var transform = function () {
+            if (index === length - 1) {
+                index = 0;
+            } else {
+                index++;
+            }
+            pic.eq(index - 1).fadeOut(2000);
+            pic.eq(index).fadeIn(2000);
+        };
+        transform();
+        setInterval(transform, 3000);
+    });
+</script>
 
 </body>
 </html>
