@@ -135,6 +135,14 @@ function getPageMessage(blogId) {
 }
 
 $(document).ready(function () {
+    editormd("editormd", {
+        path: "editormd/lib/",// Autoload modules mode, codemirror, marked... dependents libs path
+        imageUpload: true,
+        imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp", "svg"],
+        imageUploadURL: "file/upload",
+        sequenceDiagram : true
+    });
+
     var id = getUrlParam("id");
     if (id != null && id != undefined) {
         id = parseInt(id);
